@@ -4,7 +4,7 @@ using System.Text;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
-namespace WebToDoList.Data
+namespace WebToDoList.DataAccess.Data
 {
     public class ApplicationDbContext : IdentityDbContext
     {
