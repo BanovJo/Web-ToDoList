@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.Text;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using ToDoList.Models;
 
-namespace WebToDoList.DataAccess.Data
+namespace ToDoList.DataAccess.Data
 {
     public class ApplicationDbContext : IdentityDbContext
     {
@@ -12,5 +13,6 @@ namespace WebToDoList.DataAccess.Data
             : base(options)
         {
         }
+        public DbSet<TaskType> TaskTypes { get; set; }
     }
 }
