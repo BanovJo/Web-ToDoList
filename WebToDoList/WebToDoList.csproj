@@ -21,8 +21,4 @@
     <ProjectReference Include="..\ToDoList.Utility\ToDoList.Utility.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Areas\TeamLeader\Controllers\" />
-  </ItemGroup>
-
 </Project>
