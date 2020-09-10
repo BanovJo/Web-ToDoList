@@ -23,7 +23,7 @@ namespace ToDoList.DataAccess.Repository
             if (objFromDb != null)
             {
                 objFromDb.Type = taskType.Type;
-                _db.SaveChanges();
+                //_db.SaveChanges();
             }
         }
     }

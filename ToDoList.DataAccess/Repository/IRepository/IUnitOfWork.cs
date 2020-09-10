@@ -8,5 +8,7 @@ namespace ToDoList.DataAccess.Repository.IRepository
     {
         ITaskTypeRepository TaskType { get; }
         ISP_Call SP_Call { get; }
+
+        void Save();
     }
 }

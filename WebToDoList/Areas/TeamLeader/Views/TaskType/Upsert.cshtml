@@ -1,0 +1,46 @@
+﻿@model ToDoList.Models.TaskType
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var title = "Create Task type";
+}
+
+<form method="post">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    @if (Model.TaskTypeId != 0)//edit
+    {
+        title = "Edit Task type";
+    }
+    <div class="row p-3 border">
+        <div class="col-12 border-bottom">
+            <h2 class="text-primary">@title</h2>
+        </div>
+        <div class="col-8 pt-4">
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="Type"></label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="Type" class="form-control" />
+                    <span asp-validation-for="Type" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-8 offset-4">
+                    @if (Model.TaskTypeId != 0)
+                    {
+                        <partial name="_EditAndBackToListButton" model="Model.TaskTypeId" />
+                    }
+                    else
+                    {
+                        <partial name="_CreateAndBackToListButton" />
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+@section Scripts{
+    <partial name="_ValidationScriptsPartial" />
+}
+
