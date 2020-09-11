@@ -10,11 +10,11 @@ using ToDoList.Models;
 namespace WebToDoList.Areas.TeamLeader.Controllers
 {
     [Area("TeamLeader")]
-    public class TaskTypeController : Controller
+    public class EmployeeController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;
 
-        public TaskTypeController(IUnitOfWork unitOfWork)
+        public EmployeeController(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
         }
@@ -24,38 +24,38 @@ namespace WebToDoList.Areas.TeamLeader.Controllers
         }
         public IActionResult Upsert(int? id)
         {
-            TaskType taskType = new TaskType();
+            ToDoList.Models.Employee EmployeeController = new ToDoList.Models.Employee();
             if (id == null) //create
             {
-                return View(taskType);
+                return View(EmployeeController);
             }
-            taskType = _unitOfWork.TaskType.Get(id.GetValueOrDefault()); //edit
-            if (taskType == null)
+            EmployeeController = _unitOfWork.Employee.Get(id.GetValueOrDefault()); //edit
+            if (EmployeeController == null)
             {
                 return NotFound();
             }
 
-            return View(taskType);
+            return View(EmployeeController);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Upsert(TaskType taskType) //ne radi update id je uvijek 0
+        public IActionResult Upsert(ToDoList.Models.Employee EmployeeController) //ne radi update id je uvijek 0
         {
             if (ModelState.IsValid)
             {
-                if (taskType.TaskTypeId == 0)
+                if (EmployeeController.EmployeeId == 0)
                 {
-                    _unitOfWork.TaskType.Add(taskType);    
+                    _unitOfWork.Employee.Add(EmployeeController);    
                 }
                 else
                 {
-                    _unitOfWork.TaskType.Update(taskType);
+                    _unitOfWork.Employee.Update(EmployeeController);
                 }
                 _unitOfWork.Save();
                 return RedirectToAction(nameof(Index));
             }
-            return View(taskType);
+            return View(EmployeeController);
         }
 
 
@@ -64,18 +64,18 @@ namespace WebToDoList.Areas.TeamLeader.Controllers
         [HttpGet]
         public IActionResult GetAll()
         {
-            var allObj = _unitOfWork.TaskType.GetAll();
+            var allObj = _unitOfWork.Employee.GetAll();
             return Json(new { data = allObj });
         }
 
         public IActionResult Delete(int id)
         {
-            var objFromDb = _unitOfWork.TaskType.Get(id);
+            var objFromDb = _unitOfWork.Employee.Get(id);
             if (objFromDb == null)
             {
                 return Json(new { success = false, message = "Error while deleting" });
             }
-            _unitOfWork.TaskType.Remove(objFromDb);
+            _unitOfWork.Employee.Remove(objFromDb);
             _unitOfWork.Save();
             return Json(new { success = true, message = "Delete Successful" });
 

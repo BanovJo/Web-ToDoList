@@ -14,5 +14,7 @@ namespace ToDoList.DataAccess.Data
         {
         }
         public DbSet<TaskType> TaskTypes { get; set; }
+        public DbSet<Employee> Employees { get; set; }
+        public DbSet<Task> Tasks { get; set; }
     }
 }
