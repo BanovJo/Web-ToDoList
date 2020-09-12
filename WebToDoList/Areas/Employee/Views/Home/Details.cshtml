@@ -1,0 +1,46 @@
+﻿@model ToDoList.Models.Task
+<form method="post">
+    <input hidden asp-for="id" />
+    <div class="container backgroundWhite">
+        <div class="card">
+            <div class="card-header bg-light text-light ml-0 row container">
+                <div class="col-12 col-md-6">
+                    <h1 class="text-primary"><b>@Model.Name</b></h1>
+                    <p class="text-warning"><b>@Model.Employee.Name</b></p>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="container rounded p-2">
+                    <div class="row">
+                        <div class="col-8 col-lg-8">
+                            <div class="row pl-2">
+                                <p class="text-primary"><b>Description:</b></p>
+                            </div>
+                            <div class="row pl-2">
+                                <p class="text-secondary">@Html.Raw(Model.Dedscription)</b></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-8 col-lg-8">
+                            <div class="row pl-2">
+                                <p class="text-primary"><b>Type:</b></p>
+                            </div>
+                            <div class="row pl-2">
+                                <p class="text-secondary">@Model.TaskType.Type</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="card-footer">
+                <div class="row">
+                    <div class="col-12 col-md-6 pb-1">
+                        <a lass="btn btn-success form-control  btn-square btn-lg" style="height:50px;">Back to List</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

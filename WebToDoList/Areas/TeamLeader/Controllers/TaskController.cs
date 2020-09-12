@@ -56,30 +56,51 @@ namespace WebToDoList.Areas.TeamLeader.Controllers
             return View(taskVM);
         }
 
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public IActionResult Upsert(ToDoList.Models.Task task) //ne radi update id je uvijek 0
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        if (task.TaskTypeId == 0)
-        //        {
-        //            _unitOfWork.Task.Add(task);    
-        //        }
-        //        else
-        //        {
-        //            _unitOfWork.Task.Update(task);
-        //        }
-        //        _unitOfWork.Save();
-        //        return RedirectToAction(nameof(Index));
-        //    }
-        //    return View(task);
-        //}
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Upsert(TaskVM taskVM) 
+        {
+            if (ModelState.IsValid)
+            {
+                if(taskVM != null)
+                {
+                    ToDoList.Models.Task objFromDb = _unitOfWork.Task.Get(taskVM.Task.id);
+                }
+                if (taskVM.Task.id == 0)
+                {
+                    _unitOfWork.Task.Add(taskVM.Task);
+                }
+                else
+                {
+                    _unitOfWork.Task.Update(taskVM.Task);
+                }
+                _unitOfWork.Save();
+                return RedirectToAction(nameof(Index));
+            }
+            else
+            {
+                taskVM.TypeList = _unitOfWork.TaskType.GetAll().Select(i => new SelectListItem()
+                {
+                    Text = i.Type,
+                    Value = i.TaskTypeId.ToString()
+                });
+               taskVM.EmployeeList = _unitOfWork.Employee.GetAll().Select(i => new SelectListItem()
+               {
+                   Text = i.Name,
+                   Value = i.EmployeeId.ToString()
+               });
+                if(taskVM.Task.id != 0)
+                {
+                    taskVM.Task = _unitOfWork.Task.Get(taskVM.Task.id);
+                }
+            }
+            return View(taskVM);
+            }
 
 
-        #region API CALLS
+            #region API CALLS
 
-        [HttpGet]
+            [HttpGet]
         public IActionResult GetAll()
         {
             var allObj = _unitOfWork.Task.GetAll(includeProperties: "TaskType,Employee");

@@ -12,8 +12,8 @@ function loadDataTable() {
         "columns": [
             { "data": "name", "width": "20%" },
             { "data": "dedscription", "width": "20%" },
-            { "data": "taskType.Type", "width": "20%" },
-            { "data": "employee.Name", "width": "20%" },
+            { "data": "taskType.type", "width": "20%" },
+            { "data": "employee.name", "width": "20%" },
             {
                 "data": "id",
                 "render": function (data) {

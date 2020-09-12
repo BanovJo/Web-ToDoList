@@ -57,7 +57,7 @@
                 <div class="col-8 offset-4">
                     @if (Model.Task.id != 0)
                     {
-                        <partial name="_EditAndBackToListButton" model="Model.Task.id" />
+                        <partial name="_EditTaskAndBackToListButton" model="Model.Task.id" />
                     }
                     else
                     {
@@ -71,5 +71,13 @@
 
 @section Scripts{
     <partial name="_ValidationScriptsPartial" />
+    <script src="https://cdn.tiny.cloud/1/dytzz035axsg6hhxl9vz1hpmsvsl2hshrc707qppvuls7mj9/tinymce/5/tinymce.min.js"></script>
+    <script>
+    tinymce.init({
+        selector: 'textarea',
+        plugins: 'lists',
+        menubar: 'text edit mode',
+    });
+    </script>
 }
 
