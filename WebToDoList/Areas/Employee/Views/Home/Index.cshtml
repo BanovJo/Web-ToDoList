@@ -1,6 +1,6 @@
 ﻿@model IEnumerable<ToDoList.Models.Task>
 
-<div class="row pb-3 backgroundWhite">
+@*<div class="row pb-3 backgroundWhite">
     @foreach (var task in Model)
     {
         <div class="col-lg-3 col-md-6">
@@ -8,9 +8,9 @@
                 <div class="col-12  p-1" style="border:1px solid #008cba; border-radius: 5px;">
                     <div class="card" style="border:0px;">
                         <div class="pl-1">
-                            <p class="card-title h5"><b style="color:#2c3e50"><b>@task.Name</b></p>
-                            <p class="card-title text-primary"><b>@task.TaskType.Type</b></p>
-                            <p class="card-title text-primary"><b>@task.Employee.Name</b></p>
+                            <p class="card-title h5"><b style="color:#2c3e50">@task.Name</p>
+                            <p class="card-title text-primary">@task.TaskType.Type</p>
+                            <p class="card-title text-primary">@task.Employee.Name</p>
                         </div>
                         <div>
                             <a asp-action="Details" class="btn btn-primary form-control" asp-route-id="@task.id">DETAILS</a>
@@ -19,8 +19,32 @@
                 </div>
 
             </div>
-            
+
         </div>
     }
+</div>*@
+
+<div class="row pb-3 backgroundWhite">
+    @foreach (var task in Model)
+    {
+    <div class="col-lg-3 col-md-6">
+        <div class="row p-2">
+            <div class="col-12  p-1" style="border:1px solid #008cba; border-radius: 5px;">
+                <div class="card" style="border:0px;">
+                    <div class="pl-1">
+                        <p class="card-title h5"><b style="color:#2c3e50">@task.Name</b></p>
+                        <p class="card-title text-primary">by <b>@task.TaskType.Type</b></p>
+                        <p class="card-title text-primary">by <b>@task.Employee.Name</b></p>
+                    </div>
+                </div>
+                <div>
+                    <a asp-action="Details" class="btn btn-primary form-control" asp-route-id="@task.id">DETAILS</a>
+                </div>
+            </div>
+        </div>
     </div>
+    }
+</div>
+
+
 
